@@ -1,50 +1,36 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
+import { Stage, useApp } from '@pixi/react';
+import '@pixi/unsafe-eval';
+import * as PIXI from 'pixi.js';
+import mountain from '../../assets/icons/mountain.png';
 import './App.css';
 
-function Hello() {
-  return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
-  );
+async function run(app: any) {
+  PIXI.Assets.add({
+    alias: 'mountain',
+    src: mountain,
+  });
+
+  await PIXI.Assets.load('mountain');
+
+  const sprite = PIXI.Sprite.from(PIXI.Assets.cache.get('mountain'));
+
+  app.stage.addChild(sprite);
+}
+
+function Game() {
+  const app = useApp();
+  app.stage.removeChildren();
+  run(app);
+  return <></>;
 }
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+    <>
+      <h1>HAHA</h1>
+      <Stage width={800} height={500}>
+        <Game />
+      </Stage>
+    </>
   );
 }

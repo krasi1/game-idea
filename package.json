@@ -96,9 +96,12 @@
     }
   },
   "dependencies": {
+    "@pixi/react": "^7.1.2",
+    "@pixi/unsafe-eval": "^7.4.2",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^6.1.4",
+    "pixi.js": "^7.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0"
